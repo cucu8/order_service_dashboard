@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { restaurantService } from '../services/restaurantService';
 import type { RestaurantMenuDto } from '../services/restaurantService';
 import { orderService, OrderStatus, PaymentStatus } from '../services/orderService';
 import type { OrderDto, OrderItemDto } from '../services/orderService';
+import * as signalR from '@microsoft/signalr';
 import './OrdersPage.css';
 
 export function OrdersPage() {
@@ -16,6 +17,54 @@ export function OrdersPage() {
     const [orders, setOrders] = useState<OrderDto[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [toast, setToast] = useState<string | null>(null);
+
+    const showToast = (msg: string) => {
+        setToast(msg);
+        setTimeout(() => setToast(null), 4000);
+    };
+
+    const connectionRef = useRef<signalR.HubConnection | null>(null);
+
+    useEffect(() => {
+        if (!token || !selectedRestaurantId) return;
+
+        // Build connection
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("http://localhost:5066/hubs/orders", {
+                accessTokenFactory: () => token
+            })
+            .withAutomaticReconnect()
+            .build();
+
+        connection.on("NewOrder", (order: OrderDto) => {
+            console.log("Yeni sipariş geldi:", order);
+            // Listeyi yenile
+            loadOrders(selectedRestaurantId);
+            // Görsel bildirim
+            showToast(`🔔 Yeni Sipariş: #${order.id.slice(0, 8)}`);
+            // Ses bildirimi
+            const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2358/2358-preview.mp3');
+            audio.play().catch(e => console.log("Ses çalınamadı:", e));
+        });
+
+        connection.start()
+            .then(() => {
+                console.log("SignalR bağlantısı kuruldu");
+                //backenddeki OrdersHub içindeki bu method çalıştırılıyor:
+                //Dashboard (restoran paneli) önce gruba katılıyor
+                connection.invoke("JoinRestaurantGroup", selectedRestaurantId);
+                connectionRef.current = connection;
+            })
+            .catch(err => console.error("SignalR hatası:", err));
+
+        return () => {
+            if (connectionRef.current) {
+                connectionRef.current.invoke("LeaveRestaurantGroup", selectedRestaurantId);
+                connectionRef.current.stop();
+            }
+        };
+    }, [token, selectedRestaurantId]);
 
     const loadData = async () => {
         if (!token) return;
@@ -237,6 +286,9 @@ export function OrdersPage() {
                     ))}
                 </div>
             </main>
+
+            {/* Toast */}
+            {toast && <div className="toast">{toast}</div>}
         </div>
     );
 }
