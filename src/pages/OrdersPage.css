@@ -1,0 +1,366 @@
+.orders-bg {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    color: #1e293b;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.orders-topbar {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    height: 70px;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.orders-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.orders-brand-icon {
+    font-size: 24px;
+    background: #f59e0b;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+}
+
+.orders-brand-text {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #1e293b, #475569);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.orders-nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background: #4f46e5;
+    transform: translateY(-1px);
+}
+
+.orders-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.orders-header {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.orders-welcome {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.restaurant-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.restaurant-selector label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.restaurant-selector select {
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1e293b;
+    outline: none;
+    cursor: pointer;
+}
+
+.orders-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+}
+
+.order-card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.order-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-id-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-id-label {
+    font-size: 12px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.order-id-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* Status Colors */
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status-accepted {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-preparing {
+    background: #e0e7ff;
+    color: #3730a3;
+}
+
+.status-ready {
+    background: #fae8ff;
+    color: #86198f;
+}
+
+.status-ontheway {
+    background: #ffedd5;
+    color: #9a3412;
+}
+
+.status-delivered {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.status-cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.order-items-list {
+    border-top: 1px dashed #e2e8f0;
+    border-bottom: 1px dashed #e2e8f0;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-item-row {
+    display: flex;
+    gap: 12px;
+    font-size: 15px;
+}
+
+.item-qty {
+    font-weight: 700;
+    color: #6366f1;
+    min-width: 25px;
+}
+
+.item-name {
+    flex: 1;
+    color: #334155;
+}
+
+.item-price {
+    font-weight: 600;
+    color: #64748b;
+}
+
+.order-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.meta-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.meta-row span:first-child {
+    color: #94a3b8;
+}
+
+.payment-status {
+    font-weight: 600;
+}
+
+.ps-2 {
+    color: #10b981;
+}
+
+/* Paid */
+.ps-1 {
+    color: #f59e0b;
+}
+
+/* Pending */
+.ps-3 {
+    color: #ef4444;
+}
+
+/* Failed */
+
+.order-card-footer {
+    padding-top: 20px;
+    margin-top: auto;
+    border-top: 1px solid #f1f5f9;
+}
+
+.total-amount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.total-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.total-value {
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.order-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.accept-btn {
+    background: #10b981;
+    color: white;
+}
+
+.prepare-btn {
+    background: #6366f1;
+    color: white;
+}
+
+.ready-btn {
+    background: #a855f7;
+    color: white;
+}
+
+.cancel-btn {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.action-btn:hover {
+    filter: brightness(0.9);
+    transform: scale(1.02);
+}
+
+.dashboard-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 100px 0;
+    color: #64748b;
+    background: white;
+    border-radius: 24px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

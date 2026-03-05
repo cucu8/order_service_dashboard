@@ -178,9 +178,12 @@ export function HomePage() {
                     <div className="home-brand-icon">⚡</div>
                     <span className="home-brand-text">CideGetir Owner Dashboard</span>
                 </div>
-                <button className="home-logout-btn" onClick={handleLogout}>
-                    Çıkış Yap
-                </button>
+                <div className="home-nav">
+                    <button className="nav-btn" onClick={() => navigate('/orders')}>Siparişler</button>
+                    <button className="home-logout-btn" onClick={handleLogout}>
+                        Çıkış Yap
+                    </button>
+                </div>
             </div>
             <main className="home-main">
                 <div className="home-header">
