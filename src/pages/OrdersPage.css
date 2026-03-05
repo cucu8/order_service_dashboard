@@ -355,6 +355,17 @@
     margin-bottom: 20px;
 }
 
+.order-note-display {
+    background: #fff9c4;
+    border: 2px dashed #fbc02d;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #455a64;
+    margin: 15px 15px 0;
+    line-height: 1.4;
+}
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);

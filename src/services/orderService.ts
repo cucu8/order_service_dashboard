@@ -40,6 +40,7 @@ export interface OrderDto {
     restaurant: any | null;
     status: OrderStatus;
     paymentStatus: PaymentStatus;
+    note: string | null;
     totalAmount: number;
     orderItems: OrderItemDto[];
     courierId: string | null;

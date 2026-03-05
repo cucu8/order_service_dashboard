@@ -217,6 +217,13 @@ export function OrdersPage() {
                                 </div>
                             </div>
 
+                            {order.note && (
+                                <div className="order-note-display">
+                                    <span style={{ fontWeight: 700, marginRight: '8px' }}>📝 NOT:</span>
+                                    {order.note}
+                                </div>
+                            )}
+
                             <div className="order-card-body">
                                 <div className="order-items-list">
                                     {order.orderItems.map((item: OrderItemDto) => (
