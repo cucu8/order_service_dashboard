@@ -3,6 +3,8 @@ const BASE_URL = 'http://localhost:5066/api';
 export interface ProductDto {
     id: string;
     name: string;
+    description?: string;
+    photoUrl?: string;
     price: number;
     isActive: boolean;
 }

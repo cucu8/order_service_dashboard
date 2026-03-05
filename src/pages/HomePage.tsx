@@ -47,11 +47,6 @@ export function HomePage() {
         navigate('/login');
     };
 
-    // Placeholder handlers for toggle actions. We will fill these later.
-    const handleToggleRestaurant = async (restaurantId: string, currentStatus: boolean) => {
-        console.log(`Toggle Restaurant ${restaurantId} to ${!currentStatus}`);
-        // TODO: Call API endpoint
-    };
 
     const handleToggleCategory = async (restaurantId: string, categoryId: string, currentStatus: boolean) => {
         if (!token) return;
@@ -220,19 +215,6 @@ export function HomePage() {
                                 <button className="add-btn" onClick={() => handleOpenCategoryModal(restaurant.id)}>
                                     + Kategori Ekle
                                 </button>
-                                <div className="toggle-group rs-toggle">
-                                    <span className={`toggle-label ${restaurant.isActive ? 'active' : 'inactive'}`}>
-                                        {restaurant.isActive ? 'Açık' : 'Kapalı'}
-                                    </span>
-                                    <label className="toggle-switch">
-                                        <input
-                                            type="checkbox"
-                                            checked={restaurant.isActive}
-                                            onChange={() => handleToggleRestaurant(restaurant.id, restaurant.isActive)}
-                                        />
-                                        <span className="slider"></span>
-                                    </label>
-                                </div>
                             </div>
                         </div>
 
@@ -279,8 +261,16 @@ export function HomePage() {
                                             {cat.products.map(prod => (
                                                 <div key={prod.id} className={`product-row ${!prod.isActive ? 'is-inactive' : ''}`}>
                                                     <div className="prod-left">
-                                                        <div className="prod-name">{prod.name}</div>
-                                                        <div className="prod-price">{prod.price.toLocaleString('tr-TR')} ₺</div>
+                                                        {prod.photoUrl && (
+                                                            <img src={prod.photoUrl} alt={prod.name} className="product-image" />
+                                                        )}
+                                                        <div className="prod-info-col">
+                                                            <div className="prod-name">{prod.name}</div>
+                                                            {prod.description && (
+                                                                <div className="prod-desc">{prod.description}</div>
+                                                            )}
+                                                            <div className="prod-price">{prod.price.toLocaleString('tr-TR')} ₺</div>
+                                                        </div>
                                                     </div>
                                                     <div className="prod-right">
                                                         <div className="toggle-group prod-toggle">
