@@ -251,7 +251,7 @@ export function OrdersPage() {
                                     {order.status === OrderStatus.Pending && (
                                         <button
                                             className="action-btn accept-btn"
-                                            onClick={() => handleUpdateStatus(order.id, OrderStatus.Accepted)}
+                                            onClick={() => handleUpdateStatus(order.id, OrderStatus.Preparing)}
                                         >
                                             Onayla
                                         </button>
